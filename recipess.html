@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindful Eats | Interactive Recipe Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset & Base Styles */
+        
+         :root {
+            --primary: #4a6fa5;
+            --secondary: #166088;
+            --accent: #4fc3f7;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --info: #17a2b8;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fef9f5;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        /* Header Styles */
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--dark);
+        }
+        /* Hero Section */
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+        /* Recipe Filter */
+        
+        .recipe-filter {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin: 2rem 0;
+        }
+        
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .filter-tag {
+            padding: 0.5rem 1rem;
+            background-color: rgba(230, 126, 34, 0.1);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-tag:hover,
+        .filter-tag.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .filter-tag i {
+            margin-right: 0.3rem;
+        }
+        /* Recipe Grid */
+        
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .recipe-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .recipe-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--success);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 1;
+        }
+        
+        .recipe-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .recipe-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .recipe-card:hover .recipe-image img {
+            transform: scale(1.05);
+        }
+        
+        .recipe-content {
+            padding: 1.5rem;
+        }
+        
+        .recipe-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .recipe-category {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background-color: rgba(230, 126, 34, 0.1);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--primary);
+        }
+        
+        .recipe-time {
+            display: flex;
+            align-items: center;
+        }
+        
+        .recipe-rating {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        
+        .recipe-rating i {
+            color: var(--warning);
+            font-size: 0.9rem;
+            margin-right: 0.2rem;
+        }
+        
+        .recipe-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .recipe-excerpt {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .recipe-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .save-recipe {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .save-recipe.saved {
+            color: var(--danger);
+        }
+        /* Recipe Single Page */
+        
+        .recipe-single {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+        
+        .recipe-header {
+            position: relative;
+        }
+        
+        .recipe-header-image {
+            height: 400px;
+            overflow: hidden;
+        }
+        
+        .recipe-header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .recipe-header-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 2rem;
+        }
+        
+        .recipe-header-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .recipe-header-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .recipe-header-meta-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .recipe-header-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .recipe-header-btn {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .recipe-header-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .recipe-header-btn i {
+            margin-right: 0.5rem;
+        }
+        
+        .recipe-body {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            padding: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .recipe-body {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .recipe-main {
+            position: relative;
+        }
+        
+        .recipe-tools {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .recipe-tool-btn {
+            width: 36px;
+            height: 36px;
+            background-color: #f9f9f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .recipe-tool-btn:hover {
+            background-color: #eee;
+        }
+        
+        .recipe-ingredients {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .recipe-ingredients h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .ingredient-list {
+            list-style: none;
+        }
+        
+        .ingredient-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ingredient-list li:before {
+            content: "•";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+        
+        .ingredient-checkbox {
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .recipe-steps h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .step-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+        
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 1.5rem;
+            padding-left: 2.5rem;
+            position: relative;
+        }
+        
+        .step-list li:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--primary);
+            color: white;
+            width: 1.8rem;
+            height: 1.8rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        
+        .recipe-sidebar {
+            position: relative;
+        }
+        
+        .recipe-sidebar-content {
+            position: sticky;
+            top: 1rem;
+        }
+        
+        .recipe-details {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .recipe-details h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: 500;
+        }
+        
+        .detail-value {
+            color: var(--gray);
+        }
+        /* Rating System */
+        
+        .rating-container {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .rating-container h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .rating-stars {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        
+        .rating-star {
+            font-size: 1.5rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .rating-star:hover,
+        .rating-star.active {
+            color: var(--warning);
+        }
+        
+        .rating-form {
+            margin-top: 1rem;
+        }
+        
+        .rating-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            resize: vertical;
+            min-height: 100px;
+        }
+        /* Comments Section */
+        
+        .comments-section {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .comments-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .comment {
+            display: flex;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .comment:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .comment-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .comment-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .comment-body {
+            flex: 1;
+        }
+        
+        .comment-author {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .comment-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .comment-rating {
+            display: flex;
+            margin-right: 1rem;
+        }
+        
+        .comment-rating i {
+            color: var(--warning);
+            font-size: 0.8rem;
+        }
+        
+        .comment-date {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        
+        .comment-text {
+            margin-bottom: 0.5rem;
+        }
+        /* Meal Planner */
+        
+        .meal-planner {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .meal-planner h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .planner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .planner-day {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .planner-day h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .planner-recipe {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+        
+        .planner-recipe:before {
+            content: "•";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+        /* Shopping List */
+        
+        .shopping-list {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .shopping-list h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .shopping-list-items {
+            list-style: none;
+        }
+        
+        .shopping-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .shopping-checkbox {
+            margin-right: 0.5rem;
+        }
+        
+        .shopping-text {
+            flex: 1;
+        }
+        
+        .shopping-text.completed {
+            text-decoration: line-through;
+            color: var(--gray);
+        }
+        
+        .shopping-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        /* Cooking Timer */
+        
+        .cooking-timer {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .cooking-timer h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .timer-display {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-family: monospace;
+        }
+        
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .timer-btn {
+            padding: 0.5rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .timer-btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        .timer-btn.reset {
+            background-color: var(--gray);
+        }
+        /* Modal */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .modal-video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+        }
+        /* Newsletter */
+        
+        .newsletter {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 576px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 576px) {
+            .newsletter-input {
+                border-radius: 4px;
+                margin-bottom: 0.5rem;
+            }
+        }
+        
+        .newsletter-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        @media (max-width: 576px) {
+            .newsletter-btn {
+                border-radius: 4px;
+            }
+        }
+        
+        .newsletter-btn:hover {
+            background-color: #e67e22;
+        }
+        /* Footer */
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        /* Responsive Styles */
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s ease;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            .hamburger {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .recipe-header-image {
+                height: 300px;
+            }
+            .recipe-header-title {
+                font-size: 1.5rem;
+            }
+            .recipe-tools {
+                position: static;
+                margin-bottom: 1rem;
+                justify-content: flex-start;
+            }
+        }
+        /* Animation */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animated {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="blog.html" class="logo">Mindful<span>Eats</span></a>
+                <ul class="nav-links">
+                    <li><a href="blog.html">Home</a></li>
+                    <li><a href="recipes.html" class="active">Recipes</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#mealplanner">Meal Planner</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="animated">Interactive Recipe Blog</h1>
+            <p class="animated delay-1">Discover, cook, and share your favorite recipes with our enhanced features</p>
+        </div>
+    </section>
+
+    <!-- Recipe Filter -->
+    <div class="container">
+        <div class="recipe-filter">
+            <div class="filter-header">
+                <h2>Filter Recipes</h2>
+                <button class="btn" id="clearFilters">Clear All</button>
+            </div>
+            <div class="filter-tags">
+                <div class="filter-tag active" data-filter="all">
+                    <i class="fas fa-utensils"></i> All
+                </div>
+                <div class="filter-tag" data-filter="vegetarian">
+                    <i class="fas fa-leaf"></i> Vegetarian
+                </div>
+                <div class="filter-tag" data-filter="vegan">
+                    <i class="fas fa-seedling"></i> Vegan
+                </div>
+                <div class="filter-tag" data-filter="gluten-free">
+                    <i class="fas fa-bread-slice"></i> Gluten Free
+                </div>
+                <div class="filter-tag" data-filter="quick">
+                    <i class="fas fa-stopwatch"></i> Quick Meals
+                </div>
+                <div class="filter-tag" data-filter="dinner">
+                    <i class="fas fa-moon"></i> Dinner
+                </div>
+                <div class="filter-tag" data-filter="breakfast">
+                    <i class="fas fa-egg"></i> Breakfast
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recipe Grid -->
+    <div class="container">
+        <div class="recipe-grid">
+            <!-- Recipe Card 1 -->
+            <article class="recipe-card animated" data-category="vegetarian quick">
+                <div class="recipe-badge">
+                    <i class="fas fa-leaf"></i> Vegetarian
+                </div>
+                <div class="recipe-image">
+                    <img src="image/Creamy Garlic Chicken Pasta with Italian Seasoning – A Delicious Comfort Meal.jfif" alt="Creamy Garlic Pasta">
+                </div>
+                <div class="recipe-content">
+                    <div class="recipe-meta">
+                        <span class="recipe-category">Pasta</span>
+                        <span class="recipe-time">
+                            <i class="far fa-clock"></i> 30 mins
+                        </span>
+                        <span class="recipe-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.5</span>
+                        </span>
+                    </div>
+                    <h2 class="recipe-title">Creamy Garlic Pasta</h2>
+                    <p class="recipe-excerpt">A simple yet delicious creamy garlic pasta that comes together in just 30 minutes.</p>
+                    <div class="recipe-actions">
+                        <a href="#pasta" class="btn">View Recipe</a>
+                        <button class="save-recipe">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Recipe Card 2 -->
+            <article class="recipe-card animated delay-1" data-category="vegan gluten-free">
+                <div class="recipe-badge">
+                    <i class="fas fa-seedling"></i> Vegan
+                </div>
+                <div class="recipe-image">
+                    <img src="image/Easy Diabetic Meals _ 🥗 Chicken, Quinoa, and Avocado Salad Bowl _ Facebook.jfif" alt="Avocado Salad">
+                </div>
+                <div class="recipe-content">
+                    <div class="recipe-meta">
+                        <span class="recipe-category">Salad</span>
+                        <span class="recipe-time">
+                            <i class="far fa-clock"></i> 15 mins
+                        </span>
+                        <span class="recipe-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>4.0</span>
+                        </span>
+                    </div>
+                    <h2 class="recipe-title">Avocado & Quinoa Salad</h2>
+                    <p class="recipe-excerpt">A healthy and refreshing salad packed with protein and good fats.</p>
+                    <div class="recipe-actions">
+                        <a href="#salad" class="btn">View Recipe</a>
+                        <button class="save-recipe">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Recipe Card 3 -->
+            <article class="recipe-card animated delay-2" data-category="dinner">
+                <div class="recipe-image">
+                    <img src="image/How To Make Lemon Chicken Recipe with Butter Sauce.jfif" alt="Lemon Garlic Chicken">
+                </div>
+                <div class="recipe-content">
+                    <div class="recipe-meta">
+                        <span class="recipe-category">Chicken</span>
+                        <span class="recipe-time">
+                            <i class="far fa-clock"></i> 45 mins
+                        </span>
+                        <span class="recipe-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0</span>
+                        </span>
+                    </div>
+                    <h2 class="recipe-title">Lemon Garlic Chicken</h2>
+                    <p class="recipe-excerpt">Juicy chicken with a bright lemon and garlic sauce that's perfect for weeknights.</p>
+                    <div class="recipe-actions">
+                        <a href="#chicken" class="btn">View Recipe</a>
+                        <button class="save-recipe">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Recipe Single Page -->
+    <div class="container">
+        <!-- Pasta Recipe -->
+        <div class="recipe-single" id="pasta">
+            <div class="recipe-header">
+                <div class="recipe-header-image">
+                    <img src="image/Creamy Garlic Chicken Pasta with Italian Seasoning – A Delicious Comfort Meal.jfif" alt="Creamy Garlic Pasta">
+                </div>
+                <div class="recipe-header-content">
+                    <h1 class="recipe-header-title">Creamy Garlic Pasta</h1>
+                    <div class="recipe-header-meta">
+                        <div class="recipe-header-meta-item">
+                            <i class="far fa-clock"></i> Prep: 10 mins | Cook: 20 mins
+                        </div>
+                        <div class="recipe-header-meta-item">
+                            <i class="fas fa-user-friends"></i> Serves: 4
+                        </div>
+                        <div class="recipe-header-meta-item">
+                            <i class="fas fa-utensils"></i> Difficulty: Easy
+                        </div>
+                    </div>
+                    <div class="recipe-header-actions">
+                        <button class="recipe-header-btn" id="saveRecipeBtn">
+                            <i class="far fa-bookmark"></i> Save
+                        </button>
+                        <button class="recipe-header-btn" id="printRecipeBtn">
+                            <i class="fas fa-print"></i> Print
+                        </button>
+                        <button class="recipe-header-btn" id="shareRecipeBtn">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                        <button class="recipe-header-btn" id="watchVideoBtn">
+                            <i class="fas fa-play"></i> Watch Video
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="recipe-main">
+                    <div class="recipe-tools">
+                        <button class="recipe-tool-btn" title="Add to meal planner">
+                            <i class="far fa-calendar-plus"></i>
+                        </button>
+                        <button class="recipe-tool-btn" title="Generate shopping list">
+                            <i class="fas fa-shopping-basket"></i>
+                        </button>
+                        <button class="recipe-tool-btn" title="Start cooking timer">
+                            <i class="fas fa-stopwatch"></i>
+                        </button>
+                    </div>
+
+                    <div class="recipe-ingredients">
+                        <h3>Ingredients</h3>
+                        <ul class="ingredient-list">
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">8 oz fettuccine or pasta of choice</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">2 tablespoons unsalted butter</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">4 cloves garlic, minced</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">1 cup heavy cream</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">1/2 cup grated Parmesan cheese</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">Salt and pepper to taste</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">1/4 teaspoon red pepper flakes (optional)</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">2 tablespoons chopped fresh parsley</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="recipe-steps">
+                        <h3>Instructions</h3>
+                        <ol class="step-list">
+                            <li>Cook the pasta according to package instructions in salted water until al dente. Reserve 1/2 cup of pasta water before draining.</li>
+                            <li>While the pasta cooks, melt butter in a large skillet over medium heat. Add garlic and sauté for 1 minute until fragrant but not browned.</li>
+                            <li>Pour in the heavy cream and bring to a simmer. Let it cook for 2-3 minutes until slightly thickened.</li>
+                            <li>Stir in the Parmesan cheese until melted and smooth. If the sauce is too thick, add a splash of the reserved pasta water.</li>
+                            <li>Season with salt, pepper, and red pepper flakes if using.</li>
+                            <li>Add the drained pasta to the skillet and toss to coat in the sauce. Add more pasta water if needed to loosen the sauce.</li>
+                            <li>Garnish with chopped parsley and serve immediately.</li>
+                        </ol>
+                    </div>
+
+                    <!-- Rating System -->
+                    <div class="rating-container">
+                        <h3>Rate This Recipe</h3>
+                        <div class="rating-stars" id="ratingStars">
+                            <i class="far fa-star rating-star" data-rating="1"></i>
+                            <i class="far fa-star rating-star" data-rating="2"></i>
+                            <i class="far fa-star rating-star" data-rating="3"></i>
+                            <i class="far fa-star rating-star" data-rating="4"></i>
+                            <i class="far fa-star rating-star" data-rating="5"></i>
+                        </div>
+                        <form class="rating-form">
+                            <textarea placeholder="Leave a review (optional)"></textarea>
+                            <button type="submit" class="btn">Submit Rating</button>
+                        </form>
+                    </div>
+
+                    <!-- Comments Section -->
+                    <div class="comments-section">
+                        <h3>Reviews</h3>
+                        <div class="comment">
+                            <div class="comment-avatar">
+                                <img src="image/feed-4.jpg" alt="User avatar">
+                            </div>
+                            <div class="comment-body">
+                                <div class="comment-author">Sarah Johnson</div>
+                                <div class="comment-meta">
+                                    <div class="comment-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="comment-date">June 12, 2023</div>
+                                </div>
+                                <div class="comment-text">
+                                    This pasta recipe is amazing! So creamy and flavorful. I added some mushrooms and it turned out perfect.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="comment-avatar">
+                                <img src="image/feed-5.jpg" alt="User avatar">
+                            </div>
+                            <div class="comment-body">
+                                <div class="comment-author">Michael Chen</div>
+                                <div class="comment-meta">
+                                    <div class="comment-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <div class="comment-date">June 8, 2023</div>
+                                </div>
+                                <div class="comment-text">
+                                    Great recipe! I used half-and-half instead of heavy cream to make it a bit lighter and it still turned out delicious.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-sidebar">
+                    <div class="recipe-sidebar-content">
+                        <div class="recipe-details">
+                            <h3>Recipe Details</h3>
+                            <div class="detail-item">
+                                <span class="detail-label">Prep Time</span>
+                                <span class="detail-value">10 mins</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Cook Time</span>
+                                <span class="detail-value">20 mins</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Total Time</span>
+                                <span class="detail-value">30 mins</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Servings</span>
+                                <span class="detail-value">4</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Calories</span>
+                                <span class="detail-value">520 kcal</span>
+                            </div>
+                        </div>
+
+                        <!-- Meal Planner -->
+                        <div class="meal-planner">
+                            <h3>Add to Meal Planner</h3>
+                            <div class="planner-grid">
+                                <div class="planner-day">
+                                    <h4>Monday</h4>
+                                    <div class="planner-recipe">Breakfast</div>
+                                    <div class="planner-recipe">Lunch</div>
+                                    <div class="planner-recipe">Dinner</div>
+                                </div>
+                                <div class="planner-day">
+                                    <h4>Tuesday</h4>
+                                    <div class="planner-recipe">Breakfast</div>
+                                    <div class="planner-recipe">Lunch</div>
+                                    <div class="planner-recipe">Dinner</div>
+                                </div>
+                            </div>
+                            <button class="btn" style="width: 100%; margin-top: 1rem;">Add to Planner</button>
+                        </div>
+
+                        <!-- Shopping List -->
+                        <div class="shopping-list">
+                            <h3>Shopping List</h3>
+                            <ul class="shopping-list-items">
+                                <li class="shopping-item">
+                                    <input type="checkbox" class="shopping-checkbox">
+                                    <span class="shopping-text">Fettuccine pasta</span>
+                                </li>
+                                <li class="shopping-item">
+                                    <input type="checkbox" class="shopping-checkbox">
+                                    <span class="shopping-text">Unsalted butter</span>
+                                </li>
+                                <li class="shopping-item">
+                                    <input type="checkbox" class="shopping-checkbox">
+                                    <span class="shopping-text">Garlic</span>
+                                </li>
+                                <li class="shopping-item">
+                                    <input type="checkbox" class="shopping-checkbox">
+                                    <span class="shopping-text">Heavy cream</span>
+                                </li>
+                                <li class="shopping-item">
+                                    <input type="checkbox" class="shopping-checkbox">
+                                    <span class="shopping-text">Parmesan cheese</span>
+                                </li>
+                            </ul>
+                            <div class="shopping-actions">
+                                <button class="btn" style="flex: 1;">Print List</button>
+                                <button class="btn" style="flex: 1;">Email List</button>
+                            </div>
+                        </div>
+
+                        <!-- Cooking Timer -->
+                        <div class="cooking-timer">
+                            <h3>Cooking Timer</h3>
+                            <div class="timer-display">00:00:00</div>
+                            <div class="timer-controls">
+                                <button class="timer-btn" id="startTimer">
+                                    <i class="fas fa-play"></i> Start
+                                </button>
+                                <button class="timer-btn" id="pauseTimer">
+                                    <i class="fas fa-pause"></i> Pause
+                                </button>
+                                <button class="timer-btn reset" id="resetTimer">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <iframe class="modal-video" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Get More Recipes</h2>
+            <p>Subscribe to our newsletter and receive new recipes straight to your inbox every week!</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Mindful Eats</h3>
+                    <p>Sharing delicious, tested recipes that you can easily make at home.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="recipes.html">Recipes</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Meal Planner</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Recipe Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Breakfast</a></li>
+                        <li><a href="#">Lunch</a></li>
+                        <li><a href="#">Dinner</a></li>
+                        <li><a href="#">Desserts</a></li>
+                        <li><a href="#">Vegetarian</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> hello@mindfuleats.com</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Recipe St, Food City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Mindful Eats. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Recipe Filtering
+        const filterTags = document.querySelectorAll('.filter-tag');
+        const recipeCards = document.querySelectorAll('.recipe-card');
+        const clearFiltersBtn = document.getElementById('clearFilters');
+
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                // Toggle active class
+                if (tag.dataset.filter === 'all') {
+                    filterTags.forEach(t => t.classList.remove('active'));
+                    tag.classList.add('active');
+                } else {
+                    document.querySelector('[data-filter="all"]').classList.remove('active');
+                    tag.classList.toggle('active');
+                }
+
+                // Get active filters
+                const activeFilters = Array.from(document.querySelectorAll('.filter-tag.active'))
+                    .map(t => t.dataset.filter)
+                    .filter(f => f !== 'all');
+
+                // Filter recipes
+                recipeCards.forEach(card => {
+                    const cardCategories = card.dataset.category.split(' ');
+
+                    if (activeFilters.length === 0 ||
+                        activeFilters.some(filter => cardCategories.includes(filter))) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        clearFiltersBtn.addEventListener('click', () => {
+            filterTags.forEach(tag => tag.classList.remove('active'));
+            document.querySelector('[data-filter="all"]').classList.add('active');
+            recipeCards.forEach(card => card.style.display = 'block');
+        });
+
+        // Save Recipe Functionality
+        const saveRecipeBtns = document.querySelectorAll('.save-recipe');
+
+        saveRecipeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('saved');
+                btn.innerHTML = btn.classList.contains('saved') ?
+                    '<i class="fas fa-bookmark"></i>' :
+                    '<i class="far fa-bookmark"></i>';
+
+                // Show feedback
+                const feedback = document.createElement('div');
+                feedback.textContent = btn.classList.contains('saved') ?
+                    'Recipe saved!' : 'Recipe unsaved';
+                feedback.style.position = 'fixed';
+                feedback.style.bottom = '20px';
+                feedback.style.right = '20px';
+                feedback.style.backgroundColor = '#333';
+                feedback.style.color = 'white';
+                feedback.style.padding = '10px 20px';
+                feedback.style.borderRadius = '4px';
+                feedback.style.zIndex = '1000';
+                document.body.appendChild(feedback);
+
+                setTimeout(() => {
+                    feedback.style.opacity = '0';
+                    feedback.style.transition = 'opacity 0.5s ease';
+                    setTimeout(() => feedback.remove(), 500);
+                }, 2000);
+            });
+        });
+
+        // Recipe Rating System
+        const ratingStars = document.querySelectorAll('.rating-star');
+
+        ratingStars.forEach(star => {
+            star.addEventListener('click', () => {
+                const rating = parseInt(star.dataset.rating);
+
+                // Update star display
+                ratingStars.forEach((s, index) => {
+                    if (index < rating) {
+                        s.classList.remove('far');
+                        s.classList.add('fas');
+                    } else {
+                        s.classList.remove('fas');
+                        s.classList.add('far');
+                    }
+                });
+
+                // In a real app, you would save this to your backend
+                console.log(`User rated this recipe ${rating} stars`);
+            });
+        });
+
+        // Shopping List Checkboxes
+        const shoppingCheckboxes = document.querySelectorAll('.shopping-checkbox');
+
+        shoppingCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const text = checkbox.nextElementSibling;
+                if (checkbox.checked) {
+                    text.classList.add('completed');
+                } else {
+                    text.classList.remove('completed');
+                }
+            });
+        });
+
+        // Cooking Timer
+        let timerInterval;
+        let seconds = 0;
+        const timerDisplay = document.querySelector('.timer-display');
+        const startTimerBtn = document.getElementById('startTimer');
+        const pauseTimerBtn = document.getElementById('pauseTimer');
+        const resetTimerBtn = document.getElementById('resetTimer');
+
+        function updateTimerDisplay() {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+
+            timerDisplay.textContent =
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        startTimerBtn.addEventListener('click', () => {
+            if (!timerInterval) {
+                timerInterval = setInterval(() => {
+                    seconds++;
+                    updateTimerDisplay();
+                }, 1000);
+            }
+        });
+
+        pauseTimerBtn.addEventListener('click', () => {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        });
+
+        resetTimerBtn.addEventListener('click', () => {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            seconds = 0;
+            updateTimerDisplay();
+        });
+
+        // Video Modal
+        const watchVideoBtn = document.getElementById('watchVideoBtn');
+        const videoModal = document.getElementById('videoModal');
+        const closeModalBtn = document.getElementById('closeModal');
+
+        watchVideoBtn.addEventListener('click', () => {
+            videoModal.style.display = 'flex';
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            videoModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.style.display = 'none';
+            }
+        });
+
+        // Print Recipe
+        const printRecipeBtn = document.getElementById('printRecipeBtn');
+
+        printRecipeBtn.addEventListener('click', () => {
+            window.print();
+        });
+
+        // Share Recipe
+        const shareRecipeBtn = document.getElementById('shareRecipeBtn');
+
+        shareRecipeBtn.addEventListener('click', async() => {
+            try {
+                await navigator.share({
+                    title: 'Creamy Garlic Pasta Recipe',
+                    text: 'Check out this delicious creamy garlic pasta recipe!',
+                    url: window.location.href + '#pasta'
+                });
+            } catch (err) {
+                console.log('Error sharing:', err);
+                // Fallback for browsers that don't support Web Share API
+                alert('Share this recipe by copying the URL from your browser!');
+            }
+        });
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animated');
+
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Run on load and scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+
+</html>

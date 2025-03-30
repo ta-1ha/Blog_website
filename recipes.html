@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindful Eats | Interactive Recipe Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="recipes.css">
+
+</head>
+
+<body>
+    <!-- Floating Action Button -->
+    <div class="fab" id="fab">
+        <i class="fas fa-utensils"></i>
+    </div>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Mindful<span>Blogger</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#recipes" class="active">Recipes</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#mealplanner">Meal Planner</a></li>
+
+                </ul>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="animated">Interactive Recipe Blog</h1>
+            <p class="animated delay-1">Discover, cook, and share your favorite recipes with our enhanced features</p>
+            <a href="#recipes" class="btn pulse" id="exploreBtn">Explore Recipes</a>
+        </div>
+    </section>
+
+    <!-- Recipe Filter -->
+    <div class="container">
+        <div class="recipe-filter">
+            <div class="filter-header">
+                <h2>Filter Recipes</h2>
+                <button class="btn" id="clearFilters">Clear All</button>
+            </div>
+            <div class="filter-tags">
+                <div class="filter-tag active" data-filter="all">
+                    <i class="fas fa-utensils"></i> All
+                </div>
+                <div class="filter-tag" data-filter="vegetarian">
+                    <i class="fas fa-leaf"></i> Vegetarian
+                </div>
+                <div class="filter-tag" data-filter="vegan">
+                    <i class="fas fa-seedling"></i> Vegan
+                </div>
+                <div class="filter-tag" data-filter="gluten-free">
+                    <i class="fas fa-bread-slice"></i> Gluten Free
+                </div>
+                <div class="filter-tag" data-filter="quick">
+                    <i class="fas fa-stopwatch"></i> Quick Meals
+                </div>
+                <div class="filter-tag" data-filter="dinner">
+                    <i class="fas fa-moon"></i> Dinner
+                </div>
+                <div class="filter-tag" data-filter="breakfast">
+                    <i class="fas fa-egg"></i> Breakfast
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recipe Grid -->
+    <div class="container" id="categories">
+        <div class="recipe-grid" id="recipeGrid">
+            <!-- Recipe Card 1 -->
+            <article class="recipe-card" data-category="vegetarian quick">
+                <div class="recipe-badge">
+                    <i class="fas fa-leaf"></i> Vegetarian
+                </div>
+                <div class="recipe-image">
+                    <img src="image/Creamy Garlic Chicken Pasta with Italian Seasoning – A Delicious Comfort Meal.jfif" alt="Creamy Garlic Pasta">
+
+                </div>
+                <div class="recipe-content">
+                    <div class="recipe-meta">
+                        <span class="recipe-category">Pasta</span>
+                        <span class="recipe-time">
+                            <i class="far fa-clock"></i> 30 mins
+                        </span>
+                        <span class="recipe-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.5</span>
+                        </span>
+                    </div>
+                    <h2 class="recipe-title">Creamy Garlic Pasta</h2>
+                    <p class="recipe-excerpt">A simple yet delicious creamy garlic pasta that comes together in just 30 minutes.</p>
+                    <div class="recipe-actions">
+                        <a href="#pasta" class="btn">View Recipe</a>
+                        <button class="save-recipe">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Recipe Card 2 -->
+            <article class="recipe-card" data-category="vegan gluten-free">
+                <div class="recipe-badge">
+                    <i class="fas fa-seedling"></i> Vegan
+                </div>
+                <div class="recipe-image">
+                    <img src="image/Easy Diabetic Meals _ 🥗 Chicken, Quinoa, and Avocado Salad Bowl _ Facebook.jfif" alt="Avocado Salad">
+
+                </div>
+                <div class="recipe-content">
+                    <div class="recipe-meta">
+                        <span class="recipe-category">Salad</span>
+                        <span class="recipe-time">
+                            <i class="far fa-clock"></i> 15 mins
+                        </span>
+                        <span class="recipe-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>4.0</span>
+                        </span>
+                    </div>
+                    <h2 class="recipe-title">Avocado & Quinoa Salad</h2>
+                    <p class="recipe-excerpt">A healthy and refreshing salad packed with protein and good fats.</p>
+                    <div class="recipe-actions">
+                        <a href="#salad" class="btn">View Recipe</a>
+                        <button class="save-recipe">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Recipe Card 3 -->
+            <article class="recipe-card" data-category="dinner">
+                <div class="recipe-image">
+                    <img src="image/How To Make Lemon Chicken Recipe with Butter Sauce.jfif" alt="Lemon Garlic Chicken">
+                </div>
+                <div class="recipe-content">
+                    <div class="recipe-meta">
+                        <span class="recipe-category">Chicken</span>
+                        <span class="recipe-time">
+                            <i class="far fa-clock"></i> 45 mins
+                        </span>
+                        <span class="recipe-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0</span>
+                        </span>
+                    </div>
+                    <h2 class="recipe-title">Lemon Garlic Chicken</h2>
+                    <p class="recipe-excerpt">Juicy chicken with a bright lemon and garlic sauce that's perfect for weeknights.</p>
+                    <div class="recipe-actions">
+                        <a href="#chicken" class="btn">View Recipe</a>
+                        <button class="save-recipe">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Recipe Single Page -->
+    <div class="container" id="recipes">
+        <!-- Pasta Recipe -->
+        <div class="recipe-single" id="pasta">
+            <div class="recipe-header">
+                <div class="recipe-header-image">
+                    <img src="image/Creamy Garlic Chicken Pasta with Italian Seasoning – A Delicious Comfort Meal.jfif" alt="Creamy Garlic Pasta">
+                </div>
+                <div class="recipe-header-content">
+                    <h1 class="recipe-header-title">Creamy Garlic Pasta</h1>
+                    <div class="recipe-header-meta">
+                        <div class="recipe-header-meta-item">
+                            <i class="far fa-clock"></i> Prep: 10 mins | Cook: 20 mins
+                        </div>
+                        <div class="recipe-header-meta-item">
+                            <i class="fas fa-user-friends"></i> Serves: 4
+                        </div>
+                        <div class="recipe-header-meta-item">
+                            <i class="fas fa-utensils"></i> Difficulty: Easy
+                        </div>
+                    </div>
+                    <div class="recipe-header-actions">
+                        <button class="recipe-header-btn" id="saveRecipeBtn">
+                            <i class="far fa-bookmark"></i> Save
+                        </button>
+                        <button class="recipe-header-btn" id="printRecipeBtn">
+                            <i class="fas fa-print"></i> Print
+                        </button>
+                        <button class="recipe-header-btn" id="shareRecipeBtn">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                        <button class="recipe-header-btn" id="watchVideoBtn">
+                            <i class="fas fa-play"></i> Watch Video
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="recipe-main">
+                    <div class="recipe-tools">
+                        <button class="recipe-tool-btn" title="Add to meal planner">
+                            <i class="far fa-calendar-plus"></i>
+                        </button>
+                        <button class="recipe-tool-btn" title="Generate shopping list">
+                            <i class="fas fa-shopping-basket"></i>
+                        </button>
+                        <button class="recipe-tool-btn" title="Start cooking timer">
+                            <i class="fas fa-stopwatch"></i>
+                        </button>
+                    </div>
+
+                    <div class="recipe-ingredients">
+                        <h3>Ingredients</h3>
+                        <ul class="ingredient-list">
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">8 oz fettuccine or pasta of choice</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">2 tablespoons unsalted butter</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">4 cloves garlic, minced</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">1 cup heavy cream</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">1/2 cup grated Parmesan cheese</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">Salt and pepper to taste</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">1/4 teaspoon red pepper flakes (optional)</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="ingredient-checkbox">
+                                <span class="ingredient-text">2 tablespoons chopped fresh parsley</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="recipe-steps">
+                        <h3>Instructions</h3>
+                        <ol class="step-list">
+                            <li>Cook the pasta according to package instructions in salted water until al dente. Reserve 1/2 cup of pasta water before draining.</li>
+                            <li>While the pasta cooks, melt butter in a large skillet over medium heat. Add garlic and sauté for 1 minute until fragrant but not browned.</li>
+                            <li>Pour in the heavy cream and bring to a simmer. Let it cook for 2-3 minutes until slightly thickened.</li>
+                            <li>Stir in the Parmesan cheese until melted and smooth. If the sauce is too thick, add a splash of the reserved pasta water.</li>
+                            <li>Season with salt, pepper, and red pepper flakes if using.</li>
+                            <li>Add the drained pasta to the skillet and toss to coat in the sauce. Add more pasta water if needed to loosen the sauce.</li>
+                            <li>Garnish with chopped parsley and serve immediately.</li>
+                        </ol>
+                    </div>
+
+                    <!-- Rating System -->
+                    <div class="rating-container">
+                        <h3>Rate This Recipe</h3>
+                        <div class="rating-stars" id="ratingStars">
+                            <i class="far fa-star rating-star" data-rating="1"></i>
+                            <i class="far fa-star rating-star" data-rating="2"></i>
+                            <i class="far fa-star rating-star" data-rating="3"></i>
+                            <i class="far fa-star rating-star" data-rating="4"></i>
+                            <i class="far fa-star rating-star" data-rating="5"></i>
+                        </div>
+                        <form class="rating-form">
+                            <textarea placeholder="Leave a review (optional)"></textarea>
+                            <button type="submit" class="btn">Submit Rating</button>
+                        </form>
+                    </div>
+
+                    <!-- Comments Section -->
+                    <div class="comments-section">
+                        <h3>Reviews</h3>
+                        <div class="comment">
+                            <div class="comment-avatar">
+                                <img src="image/feed-4.jpg" alt="User avatar">
+                            </div>
+                            <div class="comment-body">
+                                <div class="comment-author">Sarah Johnson</div>
+                                <div class="comment-meta">
+                                    <div class="comment-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="comment-date">June 12, 2023</div>
+                                </div>
+                                <div class="comment-text">
+                                    This pasta recipe is amazing! So creamy and flavorful. I added some mushrooms and it turned out perfect.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="comment-avatar">
+                                <img src="image/feed-5.jpg" alt="User avatar">
+                            </div>
+                            <div class="comment-body">
+                                <div class="comment-author">Michael Chen</div>
+                                <div class="comment-meta">
+                                    <div class="comment-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <div class="comment-date">June 8, 2023</div>
+                                </div>
+                                <div class="comment-text">
+                                    Great recipe! I used half-and-half instead of heavy cream to make it a bit lighter and it still turned out delicious.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-sidebar">
+                    <div class="recipe-sidebar-content">
+                        <div class="recipe-details">
+                            <h3>Recipe Details</h3>
+                            <div class="detail-item">
+                                <span class="detail-label">Prep Time</span>
+                                <span class="detail-value">10 mins</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Cook Time</span>
+                                <span class="detail-value">20 mins</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Total Time</span>
+                                <span class="detail-value">30 mins</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Servings</span>
+                                <span class="detail-value">4</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Calories</span>
+                                <span class="detail-value">520 kcal</span>
+                            </div>
+                        </div>
+
+                        <!-- Meal Planner -->
+                        <div class="meal-planner" id="mealplanner">
+                            <h3>Add to Meal Planner</h3>
+                            <div class="planner-grid">
+                                <div class="planner-day">
+                                    <h4>Monday</h4>
+                                    <div class="planner-recipe">Breakfast</div>
+                                    <div class="planner-recipe">Lunch</div>
+                                    <div class="planner-recipe">Dinner</div>
+                                </div>
+                                <div class="planner-day">
+                                    <h4>Tuesday</h4>
+                                    <div class="planner-recipe">Breakfast</div>
+                                    <div class="planner-recipe">Lunch</div>
+                                    <div class="planner-recipe">Dinner</div>
+                                </div>
+                            </div>
+                            <button class="btn" style="width: 100%; margin-top: 1rem;">Add to Planner</button>
+                        </div>
+
+                        <!-- Shopping List -->
+                        <div class="shopping-list">
+                            <h3>Shopping List</h3>
+                            <ul class="shopping-list-items">
+                                <li class="shopping-item">
+                                    <input type="checkbox" class="shopping-checkbox">
+                                    <span class="shopping-text">Fettuccine pasta</span>
+                                </li>
+                                <li class="shopping-item">
+                                    <input type="checkbox" class="shopping-checkbox">
+                                    <span class="shopping-text">Unsalted butter</span>
+                                </li>
+                                <li class="shopping-item">
+                                    <input type="checkbox" class="shopping-checkbox">
+                                    <span class="shopping-text">Garlic</span>
+                                </li>
+                                <li class="shopping-item">
+                                    <input type="checkbox" class="shopping-checkbox">
+                                    <span class="shopping-text">Heavy cream</span>
+                                </li>
+                                <li class="shopping-item">
+                                    <input type="checkbox" class="shopping-checkbox">
+                                    <span class="shopping-text">Parmesan cheese</span>
+                                </li>
+                            </ul>
+                            <div class="shopping-actions">
+                                <button class="btn" style="flex: 1;">Print List</button>
+                                <button class="btn" style="flex: 1;">Email List</button>
+                            </div>
+                        </div>
+
+                        <!-- Cooking Timer -->
+                        <div class="cooking-timer">
+                            <h3>Cooking Timer</h3>
+                            <div class="timer-display">00:00:00</div>
+                            <div class="timer-controls">
+                                <button class="timer-btn" id="startTimer">
+                                    <i class="fas fa-play"></i> Start
+                                </button>
+                                <button class="timer-btn" id="pauseTimer">
+                                    <i class="fas fa-pause"></i> Pause
+                                </button>
+                                <button class="timer-btn reset" id="resetTimer">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <iframe class="modal-video" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Get More Recipes</h2>
+            <p>Subscribe to our newsletter and receive new recipes straight to your inbox every week!</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Mindful Blogger</h3>
+                    <p>Sharing delicious, tested recipes that you can easily make at home.</p>
+                    <div class="social-links">
+                        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#recipes">Recipes</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#mealplanner">Meal Planner</a></li>
+
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Recipe Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Breakfast</a></li>
+                        <li><a href="#">Lunch</a></li>
+                        <li><a href="#">Dinner</a></li>
+                        <li><a href="#">Desserts</a></li>
+                        <li><a href="#">Vegetarian</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> hello@mindfuleats.com</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Recipe St, Food City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Mindful Blogger. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="recipes.js">
+    </script>
+</body>
+
+</html>

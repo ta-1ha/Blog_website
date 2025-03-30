@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindful Blogger | Personal Blog</title>
+    <link rel="stylesheet" href="blog.css">
+
+</head>
+
+<body>
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"></path>
+        </svg>
+    </button>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Mindful<span>Blogger</span></a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 class="animated">Welcome to Mindful Blogger</h1>
+            <p class="animated delay-1">A personal space for sharing thoughts, stories, and experiences about life, technology, and everything in between.</p>
+            <a href="#posts" class="btn animated delay-2 pulse">Start Reading</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container" id="popularpost">
+        <!-- Search Bar -->
+        <div class="search-container">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search articles...">
+        </div>
+
+        <!-- Featured Posts Carousel -->
+        <section class="featured-posts">
+            <h2>Featured Posts</h2>
+            <div class="carousel" id="featuredCarousel">
+                <article class="carousel-item">
+                    <div class="post-image">
+
+                        <img src="image/Interlaken, Switzerland.jfif" alt="">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Travel</span>
+                            <span class="post-date">June 15, 2023</span>
+                        </div>
+                        <h3 class="post-title">Exploring the Swiss Alps: A Photographic Journey</h3>
+                        <a href="#" class="read-more">
+                            Read More
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                <article class="carousel-item">
+                    <div class="post-image">
+
+                        <img src="image/React Hooks_ Mastering Advanced Patterns and Techniques in 2023 _ Protonshub Technologies.jfif" alt="">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Technology</span>
+                            <span class="post-date">June 10, 2023</span>
+                        </div>
+                        <h3 class="post-title">Mastering React Hooks: A Comprehensive Guide</h3>
+                        <a href="#" class="read-more">
+                            Read More
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                <article class="carousel-item">
+                    <div class="post-image">
+                        <img src="image/Effortless Elegant Cream Puffs.jfif" alt="">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Food</span>
+                            <span class="post-date">June 5, 2023</span>
+                        </div>
+                        <h3 class="post-title">The Art of French Pastry: Techniques for Beginners</h3>
+                        <a href="#" class="read-more">
+                            Read More
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                <article class="carousel-item">
+                    <div class="post-image">
+                        <img src="image/10 Essential Self-Improvement Books.jfif" alt="">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Books</span>
+                            <span class="post-date">May 28, 2023</span>
+                        </div>
+                        <h3 class="post-title">10 Must-Read Books for Personal Growth in 2023</h3>
+                        <a href="#" class="read-more">
+                            Read More
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+            <div class="carousel-nav" id="carouselNav">
+                <!-- Carousel navigation dots will be added here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="noResults">
+            <h3>No articles found</h3>
+            <p>Try different search terms</p>
+        </div>
+
+        <div class="main-content" id="posts">
+            <!-- Posts Section -->
+            <section class="posts-section">
+
+                <!-- Regular Post -->
+                <article class="post-card animated delay-2" data-category="food" data-title="5 easy mediterranean recipes" data-content="mediterranean recipes healthy cooking quick meals">
+                    <div class="post-image">
+
+                        <img src="image/The Best One Pot Shawarma Chicken and Rice  Recipe in 2025.jfif" alt="">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Food</span>
+                            <span class="post-date">June 5, 2023</span>
+                            <span class="post-author">By Sarah Johnson</span>
+                        </div>
+                        <h2 class="post-title">5 Easy Mediterranean Recipes for Busy Weeknights</h2>
+                        <p class="post-excerpt">Eating healthy doesn't have to be complicated or time-consuming. These 5 Mediterranean-inspired recipes can be prepared in under 30 minutes and will leave you feeling nourished...</p>
+                        <div class="post-footer">
+                            <a href="#" class="read-more">
+                                Read More
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                            <button class="like-btn" data-post="3">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                                <span class="like-count">32</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Regular Post -->
+                <article class="post-card animated" data-category="nature" data-title="finding peace in nature" data-content="nature wilderness mental health healing outdoors">
+                    <div class="post-image">
+
+                        <img src="image/Connecting with Nature for Inner Peace 🌸.jfif" alt="">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Nature</span>
+                            <span class="post-date">June 12, 2023</span>
+                            <span class="post-author">By Jane Doe</span>
+                        </div>
+                        <h2 class="post-title">Finding Peace in Nature: A Journey Through the Wilderness</h2>
+                        <p class="post-excerpt">Discover how spending time in nature can transform your mental health and bring clarity to your life. This personal journey explores the healing power of the great outdoors...</p>
+                        <div class="post-footer">
+                            <a href="#" class="read-more" id="readmore">
+                                Read More
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                            <button class="like-btn" data-post="1">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                                <span class="like-count">24</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Regular Post -->
+                <article class="post-card animated delay-1" data-category="technology" data-title="the future of web development" data-content="web development trends 2023 AI Web3 technologies">
+                    <div class="post-image">
+
+                        <img src="image/The Future of Web Development_ Tre. Progressive Web Apps (PWAs)_ Firstly, Progressive Web Apps combine the best of web and mobile applications, offering users a seamless experience that is fast, reliable, an___" alt="">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Technology</span>
+                            <span class="post-date">June 8, 2023</span>
+                            <span class="post-author">By John Smith</span>
+                        </div>
+                        <h2 class="post-title">The Future of Web Development: Trends to Watch in 2023</h2>
+                        <p class="post-excerpt">As we move further into 2023, several exciting trends are shaping the future of web development. From AI integration to Web3 technologies, here's what you need to know...</p>
+                        <div class="post-footer">
+                            <a href="#" class="read-more">
+                                Read More
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                            <button class="like-btn" data-post="2">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                                <span class="like-count">18</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                <!-- Comments Section -->
+                <section class="comments-section animated delay-3" id="contact">
+                    <h3>Leave a Comment</h3>
+                    <form class="comment-form" id="commentForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Comment</label>
+                            <textarea id="comment" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Post Comment</button>
+                    </form>
+
+                    <h3>Recent Comments</h3>
+                    <div class="comments-list" id="commentsList">
+                        <!-- Comments will be added here dynamically -->
+                    </div>
+                </section>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="sidebar" id="about">
+                <!-- About Widget -->
+                <div class="widget animated">
+                    <h3 class="widget-title">About Me</h3>
+                    <div class="about-content">
+                        <img src="image/profile-15.jpg" alt="">
+
+                        <p>Hi, I'm Jane! I'm a writer, nature enthusiast, and tech geek. This blog is where I share my thoughts and experiences about the things I love.</p>
+                    </div>
+                </div>
+
+                <!-- Categories Widget -->
+                <div class="widget animated delay-1" id="categories">
+                    <h3 class="widget-title">Categories</h3>
+                    <ul class="categories-list">
+                        <li><a href="#">Technology <span>12</span></a></li>
+                        <li><a href="#">Nature <span>8</span></a></li>
+                        <li><a href="#">Food <span>5</span></a></li>
+                        <li><a href="#">Travel <span>7</span></a></li>
+                        <li><a href="#">Books <span>3</span></a></li>
+                        <li><a href="#">Lifestyle <span>9</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Popular Posts Widget -->
+                <div class="widget animated delay-2" id="popularpost">
+                    <h3 class="widget-title">Popular Posts</h3>
+                    <ul class="popular-posts">
+                        <li class="popular-post">
+                            <div class="popular-post-img">
+                                <img src="image/The Trail Provides_ A Boy's Memoir of Thru-Hiking the Pacific Crest Trail.jfif" alt="Popular Post">
+                            </div>
+                            <div class="popular-post-content">
+                                <h4 class="popular-post-title">Hiking the Pacific Crest Trail</h4>
+                                <span class="popular-post-date">May 28, 2023</span>
+                            </div>
+                        </li>
+                        <li class="popular-post">
+                            <div class="popular-post-img">
+                                <img src="image/Machine Learning with Python_ Top Libraries and Their Examples.jfif" alt="Popular Post">
+                            </div>
+                            <div class="popular-post-content">
+                                <h4 class="popular-post-title">Learning Python in 30 Days</h4>
+                                <span class="popular-post-date">May 20, 2023</span>
+                            </div>
+                        </li>
+                        <li class="popular-post">
+                            <div class="popular-post-img">
+                                <img src="image/My favorite food_.jfif" alt="Popular Post">
+                            </div>
+                            <div class="popular-post-content">
+                                <h4 class="popular-post-title">Homemade Pasta from Scratch</h4>
+                                <span class="popular-post-date">May 15, 2023</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tags Widget -->
+                <div class="widget animated delay-3">
+                    <h3 class="widget-title">Tags</h3>
+                    <div class="tags">
+                        <a href="#" class="tag">#travel</a>
+                        <a href="#" class="tag">#food</a>
+                        <a href="#" class="tag">#technology</a>
+                        <a href="#" class="tag">#nature</a>
+                        <a href="#" class="tag">#books</a>
+                        <a href="#" class="tag">#photography</a>
+                        <a href="#" class="tag">#coding</a>
+                        <a href="#" class="tag">#health</a>
+                    </div>
+                </div>
+
+                <!-- Newsletter Widget -->
+                <div class="widget">
+                    <h3 class="widget-title">Newsletter</h3>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <div class="form-group">
+                            <input type="email" id="newsletterEmail" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <button type="submit" class="btn-submit" style="width: 100%;">Subscribe</button>
+                        <div class="newsletter-message" id="newsletterMessage"></div>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Mindful Blogger</h3>
+                    <p>A personal blog dedicated to sharing insights, experiences, and knowledge about various topics that inspire and inform.</p>
+                    <div class="social-links">
+                        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#popularpost">Popular Posts</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Technology</a></li>
+                        <li><a href="#">Nature</a></li>
+                        <li><a href="#">Food</a></li>
+                        <li><a href="#">Travel</a></li>
+                        <li><a href="#">Books</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li>Email: hello@mindfulblogger.com</li>
+                        <li>Phone: (123) 456-7890</li>
+                        <li>Address: 123 Blog Street, Digital City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Mindful Blogger. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="blog.js">
+    </script>
+</body>
+
+</html>
